@@ -41,7 +41,7 @@ webSocketServer.on('request', (request) => {
     // client has sent a new message
     connection.on('message', (message) => {
         if (message.type === 'utf8') {
-            console.log('Received message', message.utf8Data, 'from remote address', connection.remoteAddress);
+            console.log('Received message \'' + message.utf8Data + '\' from remote address ' + connection.remoteAddress);
 
             // add the new message to the history
             const newMessage = {
@@ -50,9 +50,9 @@ webSocketServer.on('request', (request) => {
                 text : entities.encode(message.utf8Data)
             };
             messageHistory.push(newMessage);
-            messageHistory = messageHistory.slice(-200);
+            messageHistory = messageHistory.slice(-100);
 
-            // send the new message to ALL the connected clients
+            // send the new message to all the connected clients
             const json = JSON.stringify({ type : 'newMessage', data : newMessage });
             for (let i = 0; i < connectedClients.length; i++) {
                 connectedClients[i].sendUTF(json);
@@ -63,5 +63,6 @@ webSocketServer.on('request', (request) => {
     // client has disconnected
     connection.on('close', (reasonCode, description) => {
         console.log('Client disconnected', reasonCode, description);
+        connectedClients.splice(index, 1);
     });
 });

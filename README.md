@@ -1,6 +1,6 @@
 # websockets-demo
 
-A simple Web Sockets demonstration using Node.js.
+A simple Web Sockets demonstration using Node.js. Enter a message from any client and watch the list of messages update across all clients.
 
 ## Installation
 
