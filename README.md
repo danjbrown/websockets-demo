@@ -14,4 +14,4 @@ Start the server side component
 npm run server
 ```
 
-To try it out, just open the static HTML file /client/index.html in multiple browsers and add some messages.
+To try it out, just open the static HTML file /client/index.html directly from the file system in multiple browsers and add some messages.
